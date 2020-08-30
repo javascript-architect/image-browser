@@ -13,7 +13,7 @@ export class ImageComponent {
   @Output()
   liked: EventEmitter<Photo> = new EventEmitter<Photo>();
 
-  toggleLike(liked: boolean) {
+  toggleLike(liked: boolean): void {
     this.liked.emit({ ...this.photo, like: liked });
   }
 }

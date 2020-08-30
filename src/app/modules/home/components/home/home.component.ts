@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { PhotoService, ImageToZoom } from '../../services/photo.service';
-import { Observable } from 'rxjs';
 
 export interface Photo {
   id: string;
@@ -31,7 +30,7 @@ export class HomeComponent implements OnInit {
     this.getPhotos();
   }
 
-  private transFormResponse(response: any = []) {
+  private transFormResponse(response: any = []): void {
     this.photos.length = 0;
     response.forEach((photo: any) => {
       this.photos.push({
@@ -45,19 +44,19 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getPhotos() {
+  getPhotos(): void {
     this.photoService.getPhotos().subscribe((response: any) => {
       this.transFormResponse(response);
     });
   }
 
-  onSearch(query: string) {
+  onSearch(query: string): void {
     this.photoService.searchPhotos(query).subscribe((response: any) => {
       this.transFormResponse(response?.results || response);
     });
   }
 
-  toggleLike(modifiedPhoto: Photo) {
+  toggleLike(modifiedPhoto: Photo): void {
     this.photos = this.photos.map((photo: Photo) => {
       if (photo.id === modifiedPhoto.id) {
         return modifiedPhoto;
@@ -67,12 +66,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  trackById(photo: Photo) {
+  trackById(photo: Photo): string | boolean {
     return photo?.id;
   }
 
-  activateImage(photo: Photo) {
-    this.photoService.activateImage({
+  activateImage(photo: Photo): void {
+    this.photoService.setImageToZoom({
       photo,
       activeImage: photo.small,
       activeIndex: 0,
@@ -80,7 +79,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  closeZoomedImageContainer() {
-    this.photoService.activateImage(null);
+  closeZoomedImageContainer(): void {
+    this.photoService.setImageToZoom(null);
   }
 }

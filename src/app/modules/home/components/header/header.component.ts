@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  onSearch() {
+  onSearch(): void {
     this.search.emit(this.searchForm.value.searchText);
   }
 }

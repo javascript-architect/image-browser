@@ -5,7 +5,6 @@ import {
   HostListener,
   Input,
 } from '@angular/core';
-import { Observable } from 'rxjs';
 
 import { ImageToZoom, PhotoService } from '../services/photo.service';
 
@@ -16,19 +15,21 @@ export class ZoomImageDirective {
   @Input()
   imageToZoom: ImageToZoom;
 
-  constructor(private el: ElementRef, private renderer: Renderer2, private photoService: PhotoService) {}
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2,
+    private photoService: PhotoService
+  ) {}
 
-  @HostListener('click') onImageClick() {
+  @HostListener('click') onImageClick(): void {
     this.zoomImage(this.imageToZoom);
   }
 
-  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(
-    event: KeyboardEvent
-  ) {
-    this.photoService.activateImage(null);
+  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(): void {
+    this.photoService.setImageToZoom(null);
   }
 
-  zoomImage(imageToZoom: ImageToZoom) {
+  zoomImage(imageToZoom: ImageToZoom): void {
     if (imageToZoom.action === 'zoom-in' && imageToZoom.activeIndex <= 2) {
       imageToZoom.activeIndex += 1;
       switch (imageToZoom.activeIndex) {
@@ -42,7 +43,7 @@ export class ZoomImageDirective {
           break;
       }
     } else if (
-      imageToZoom.action == 'zoom-out' &&
+      imageToZoom.action === 'zoom-out' &&
       imageToZoom.activeIndex >= 1
     ) {
       imageToZoom.activeIndex -= 1;
@@ -58,6 +59,6 @@ export class ZoomImageDirective {
       }
     }
 
-    this.photoService.activateImage(imageToZoom);
+    this.photoService.setImageToZoom(imageToZoom);
   }
 }

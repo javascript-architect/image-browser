@@ -1,38 +1,38 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 
 import { environment as env } from '../../../../environments/environment';
 import { Photo } from '../components/home/home.component';
 
 export interface ImageToZoom {
-  photo: Photo,
+  photo: Photo;
   activeImage: string;
-  activeIndex: number,
-  action: 'zoom-in' | 'zoom-out'
+  activeIndex: number;
+  action: 'zoom-in' | 'zoom-out';
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class PhotoService {
-  private _imageToZoom$ = new Subject<ImageToZoom>();
+  #imageToZoom$ = new Subject<ImageToZoom>();
 
   constructor(private http: HttpClient) {}
 
-  get imageToZoom$() {
-    return this._imageToZoom$.asObservable();
+  get imageToZoom$(): Observable<ImageToZoom> {
+    return this.#imageToZoom$.asObservable();
   }
 
-  activateImage(imageToZoom: ImageToZoom) {
-    this._imageToZoom$.next(imageToZoom);
+  setImageToZoom(imageToZoom: ImageToZoom): void {
+    this.#imageToZoom$.next(imageToZoom);
   }
 
-  getPhotos() {
+  getPhotos(): Observable<any> {
     return this.http.get(`${env.UNSPLASH_API}/photos`);
   }
 
-  searchPhotos(query: string) {
+  searchPhotos(query: string): Observable<any> {
     if (query) {
       return this.http.get(
         `${env.UNSPLASH_API}/search/photos?query=${encodeURIComponent(query)}`

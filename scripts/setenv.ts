@@ -16,9 +16,9 @@ const targetPath = isProduction
 const content = `\
 export const environment = {
   production: ${isProduction},
-  UNSPLASH_API: "${process.env.UNSPLASH_API}",
-  UNSPLASH_ACCESS_KEY: "${process.env.UNSPLASH_ACCESS_KEY}",
-  UNSPLASH_SECRET_KEY: "${process.env.UNSPLASH_SECRET_KEY}",
+  UNSPLASH_API: '${process.env.UNSPLASH_API}',
+  UNSPLASH_ACCESS_KEY: '${process.env.UNSPLASH_ACCESS_KEY}',
+  UNSPLASH_SECRET_KEY: '${process.env.UNSPLASH_SECRET_KEY}',
 };
 `;
 
