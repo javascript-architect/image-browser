@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 
 import { PhotoService } from '../../services/photo.service';
 
-export interface Photos {
+export interface Photo {
+  id: string;
   thumb: string;
   small: string;
   regular: string;
   full: string;
+  like: boolean;
 }
 
 @Component({
@@ -15,7 +17,7 @@ export interface Photos {
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  photos: Photos[] = [];
+  photos: Photo[] = [];
 
   constructor(private photoService: PhotoService) {}
 
@@ -27,10 +29,12 @@ export class HomeComponent implements OnInit {
     this.photos.length = 0;
     response.forEach((photo: any) => {
       this.photos.push({
+        id: photo.id,
         thumb: photo.urls.thumb,
         small: photo.urls.small,
         regular: photo.urls.regular,
         full: photo.urls.full,
+        like: false,
       });
     });
   }
@@ -43,7 +47,21 @@ export class HomeComponent implements OnInit {
 
   onSearch(query: string) {
     this.photoService.searchPhotos(query).subscribe((response: any) => {
-      this.transFormResponse(response?.results);
+      this.transFormResponse(response?.results || response);
     });
+  }
+
+  toggleLike(modifiedPhoto: Photo) {
+    this.photos = this.photos.map((photo: Photo) => {
+      if (photo.id === modifiedPhoto.id) {
+        return modifiedPhoto;
+      }
+
+      return photo;
+    });
+  }
+
+  trackById(photo: Photo) {
+    return photo?.id;
   }
 }

@@ -1,0 +1,5 @@
+<div class="image">
+  <img [src]="photo.small" />
+  <span class="like-icon" *ngIf="!photo.like" (click)="toggleLike(true)">&#x2661;</span>
+  <span class="like-icon filled" *ngIf="photo.like" (click)="toggleLike(false)">&hearts;</span>
+</div>

@@ -13,8 +13,12 @@ export class PhotoService {
   }
 
   searchPhotos(query: string) {
-    return this.http.get(
-      `${env.UNSPLASH_API}/search/photos?query=${encodeURIComponent(query)}`
-    );
+    if (query) {
+      return this.http.get(
+        `${env.UNSPLASH_API}/search/photos?query=${encodeURIComponent(query)}`
+      );
+    }
+
+    return this.getPhotos();
   }
 }

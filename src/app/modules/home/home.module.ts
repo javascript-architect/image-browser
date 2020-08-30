@@ -4,9 +4,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ImageComponent } from './components/image/image.component';
 
 @NgModule({
-  declarations: [HomeComponent, HeaderComponent],
+  declarations: [HomeComponent, HeaderComponent, ImageComponent],
   imports: [CommonModule, ReactiveFormsModule],
   exports: [HomeComponent]
 })

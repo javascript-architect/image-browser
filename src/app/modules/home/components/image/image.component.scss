@@ -1,0 +1,25 @@
+.image {
+  position: relative;
+
+  .like-icon {
+    position: absolute;
+
+    font-size: 2.5rem;
+    top: 2rem;
+    right: 2rem;
+    z-index: 1000;
+
+    cursor: pointer;
+
+    &.filled {
+      font-size: 3.5rem;
+      color: orangered;
+    }
+  }
+
+  img {
+    width: 100% !important;
+    height: auto !important;
+    padding: 2px;
+  }
+}
