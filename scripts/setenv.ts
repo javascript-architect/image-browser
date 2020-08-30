@@ -13,7 +13,7 @@ const targetPath = isProduction
   ? `./src/environments/environment.prod.ts`
   : `./src/environments/environment.ts`;
 
-const content = `
+const content = `\
 export const environment = {
   production: ${isProduction},
   UNSPLASH_API: "${process.env.UNSPLASH_API}",
