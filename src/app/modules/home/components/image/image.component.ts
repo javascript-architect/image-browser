@@ -13,7 +13,8 @@ export class ImageComponent {
   @Output()
   liked: EventEmitter<Photo> = new EventEmitter<Photo>();
 
-  toggleLike(liked: boolean): void {
+  toggleLike(liked: boolean, $event: any): void {
     this.liked.emit({ ...this.photo, like: liked });
+    $event.stopPropagation();
   }
 }
