@@ -6,16 +6,29 @@
   background-color: #e9e9e9;
   padding: 1rem;
 
-  form {
+  .search-form {
     width: 100%;
 
-    input[type=text] {
-      width: 50%;
-      padding: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
       border: none;
-      margin-top: 8px;
-      margin-right: 16px;
-      font-size: 17px;
+      cursor: pointer;
     }
   }
 }

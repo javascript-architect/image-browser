@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PhotoService } from '../../services/photo.service';
+import { PhotoService, ImageToZoom } from '../../services/photo.service';
+import { Observable } from 'rxjs';
 
 export interface Photo {
   id: string;
@@ -18,8 +19,13 @@ export interface Photo {
 })
 export class HomeComponent implements OnInit {
   photos: Photo[] = [];
+  imageToZoom: ImageToZoom;
 
-  constructor(private photoService: PhotoService) {}
+  constructor(private photoService: PhotoService) {
+    photoService.imageToZoom$.subscribe((value: ImageToZoom) => {
+      this.imageToZoom = value;
+    });
+  }
 
   ngOnInit(): void {
     this.getPhotos();
@@ -63,5 +69,18 @@ export class HomeComponent implements OnInit {
 
   trackById(photo: Photo) {
     return photo?.id;
+  }
+
+  activateImage(photo: Photo) {
+    this.photoService.activateImage({
+      photo,
+      activeImage: photo.small,
+      activeIndex: 0,
+      action: 'zoom-in',
+    });
+  }
+
+  closeZoomedImageContainer() {
+    this.photoService.activateImage(null);
   }
 }

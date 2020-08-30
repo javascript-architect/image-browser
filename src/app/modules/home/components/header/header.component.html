@@ -1,5 +1,5 @@
 <div class="header">
-  <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+  <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="search-form">
     <input formControlName="searchText" type="text" placeholder="Search.." />
     <button type="submit">Submit</button>
   </form>
