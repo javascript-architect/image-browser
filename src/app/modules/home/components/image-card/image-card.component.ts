@@ -3,11 +3,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Photo } from '../../models/Photo';
 
 @Component({
-  selector: 'app-image',
-  templateUrl: './image.component.html',
-  styleUrls: ['./image.component.scss'],
+  selector: 'app-image-card',
+  templateUrl: './image-card.component.html',
+  styleUrls: ['./image-card.component.scss'],
 })
-export class ImageComponent {
+export class ImageCardComponent {
   @Input()
   photo: Photo;
 

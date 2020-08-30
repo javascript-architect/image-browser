@@ -2,9 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { HomeModule } from './modules/home/home.module';
 import { AppComponent } from './app.component';
 import { HttpRequestInterceptor } from './http-request-interceptor';
-import { HomeModule } from './modules/home/home.module';
 
 @NgModule({
   declarations: [AppComponent],

@@ -3,11 +3,23 @@
 
   <!-- Photo Grid -->
   <div id="photos">
-    <app-image *ngFor="let photo of photos; trackBy: trackById" [photo]="photo" (liked)="toggleLike($event)" (click)="activateImage(photo)"></app-image>
+    <app-image-card
+      *ngFor="let photo of photos; trackBy: trackById"
+      [photo]="photo"
+      (liked)="toggleLike($event)"
+      (click)="activateImage(photo)"
+    ></app-image-card>
   </div>
 
-  <div *ngIf="imageToZoom" class="zoomed-image-container" appZoomImage [imageToZoom]="imageToZoom">
-    <span class="close-zoom-container" (click)="closeZoomedImageContainer()">X</span>
-    <img [src]="imageToZoom.activeImage" />
+  <div
+    *ngIf="imageToZoom"
+    class="zoomed-image-container"
+    appZoomImage
+    [imageToZoom]="imageToZoom"
+  >
+    <span class="close-zoom-container" (click)="closeZoomedImageContainer()"
+      >X</span
+    >
+    <app-smart-image [image]="imageToZoom.activeImage"></app-smart-image>
   </div>
 </div>

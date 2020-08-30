@@ -1,0 +1,6 @@
+<div class="container">
+  <div *ngIf="isLoading" class="loading">
+    <app-spinner></app-spinner>
+  </div>
+  <img [src]="image" (load)="hideLoader()" (error)="hideLoader()" />
+</div>
