@@ -18,7 +18,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     let modifiedReq = req.clone({});
     modifiedReq = modifiedReq.clone({
       setHeaders: {
-        Authorization: `Client-ID ${environment.UNSPLASH_SECRET_KEY}`,
+        Authorization: `Client-ID ${environment.UNSPLASH_ACCESS_KEY}`,
       },
     });
 

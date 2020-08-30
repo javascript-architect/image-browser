@@ -9,7 +9,7 @@ import { environment as env } from '../../../../environments/environment';
 export class PhotoService {
   constructor(private http: HttpClient) {}
   getPhotos() {
-    return this.http.get(`${env.UNSPLASH_API}`);
+    return this.http.get(`${env.UNSPLASH_API}/photos`);
   }
 
   searchPhotos(query: string) {
