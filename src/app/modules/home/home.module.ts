@@ -9,8 +9,13 @@ import { ZoomImageDirective } from './directives/zoom-image.directive';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [HomeComponent, HeaderComponent, ImageCardComponent, ZoomImageDirective],
+  declarations: [
+    HomeComponent,
+    HeaderComponent,
+    ImageCardComponent,
+    ZoomImageDirective,
+  ],
   imports: [CommonModule, ReactiveFormsModule, SharedModule],
-  exports: [HomeComponent]
+  exports: [HomeComponent],
 })
 export class HomeModule {}
