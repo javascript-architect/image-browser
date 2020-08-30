@@ -14,11 +14,11 @@ export class SmartImageComponent implements OnChanges {
     this.isLoading = true;
   }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     this.isLoading = true;
   }
 
-  hideLoader() {
+  hideLoader(): void {
     this.isLoading = false;
   }
 }

@@ -44,7 +44,7 @@ export class ZoomImageDirective {
     this.photoService.setImageToZoom(imageToZoom);
   }
 
-  private zoomInImage(imageToZoom: ImageToZoom) {
+  private zoomInImage(imageToZoom: ImageToZoom): void {
     imageToZoom.activeIndex += 1;
     switch (imageToZoom.activeIndex) {
       case 1:
@@ -58,7 +58,7 @@ export class ZoomImageDirective {
     }
   }
 
-  private zoomOutImage(imageToZoom: ImageToZoom) {
+  private zoomOutImage(imageToZoom: ImageToZoom): void {
     imageToZoom.activeIndex -= 1;
     switch (imageToZoom.activeIndex) {
       case 0:
