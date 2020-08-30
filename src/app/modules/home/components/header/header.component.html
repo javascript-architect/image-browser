@@ -1,1 +1,6 @@
-<p>header works!</p>
+<div class="header">
+  <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+    <input formControlName="searchText" type="text" placeholder="Search.." />
+    <button type="submit">Submit</button>
+  </form>
+</div>

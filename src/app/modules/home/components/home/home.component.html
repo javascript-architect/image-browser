@@ -1,6 +1,8 @@
-<app-header></app-header>
+<div class="home">
+  <app-header (search)="onSearch($event)"></app-header>
 
-<!-- Photo Grid -->
-<div id="photos">
-    <img *ngFor="let photo of photos" [src]="photo.thumb" />
+  <!-- Photo Grid -->
+  <div id="photos">
+    <img *ngFor="let photo of photos" [src]="photo.small" />
+  </div>
 </div>

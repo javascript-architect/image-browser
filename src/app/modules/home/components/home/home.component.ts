@@ -15,7 +15,7 @@ export interface Photos {
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  photos: Photos[];
+  photos: Photos[] = [];
 
   constructor(private photoService: PhotoService) {}
 
@@ -23,16 +23,27 @@ export class HomeComponent implements OnInit {
     this.getPhotos();
   }
 
-  getPhotos() {
-    this.photoService.getPhotos().subscribe((res: any) => {
-      res.forEach((photo: any) => {
-        this.photos.push({
-          thumb: photo.urls.thumb,
-          small: photo.urls.small,
-          regular: photo.urls.regular,
-          full: photo.urls.full,
-        });
+  private transFormResponse(response: any = []) {
+    this.photos.length = 0;
+    response.forEach((photo: any) => {
+      this.photos.push({
+        thumb: photo.urls.thumb,
+        small: photo.urls.small,
+        regular: photo.urls.regular,
+        full: photo.urls.full,
       });
+    });
+  }
+
+  getPhotos() {
+    this.photoService.getPhotos().subscribe((response: any) => {
+      this.transFormResponse(response);
+    });
+  }
+
+  onSearch(query: string) {
+    this.photoService.searchPhotos(query).subscribe((response: any) => {
+      this.transFormResponse(response?.results);
     });
   }
 }
