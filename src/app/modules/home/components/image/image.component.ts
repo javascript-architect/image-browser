@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Photo } from '../home/home.component';
+
+import { Photo } from '../../models/Photo';
 
 @Component({
   selector: 'app-image',

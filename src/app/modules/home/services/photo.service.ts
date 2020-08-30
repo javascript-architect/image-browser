@@ -3,14 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 
 import { environment as env } from '../../../../environments/environment';
-import { Photo } from '../components/home/home.component';
-
-export interface ImageToZoom {
-  photo: Photo;
-  activeImage: string;
-  activeIndex: number;
-  action: 'zoom-in' | 'zoom-out';
-}
+import { ImageToZoom } from '../models/ImageToZoom';
 
 @Injectable({
   providedIn: 'root',

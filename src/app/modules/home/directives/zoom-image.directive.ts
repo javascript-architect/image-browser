@@ -6,7 +6,8 @@ import {
   Input,
 } from '@angular/core';
 
-import { ImageToZoom, PhotoService } from '../services/photo.service';
+import { PhotoService } from '../services/photo.service';
+import { ImageToZoom } from '../models/ImageToZoom';
 
 @Directive({
   selector: '[appZoomImage]',

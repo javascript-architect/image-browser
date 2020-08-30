@@ -1,15 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PhotoService, ImageToZoom } from '../../services/photo.service';
-
-export interface Photo {
-  id: string;
-  thumb: string;
-  small: string;
-  regular: string;
-  full: string;
-  like: boolean;
-}
+import { PhotoService } from '../../services/photo.service';
+import { Photo } from '../../models/Photo';
+import { ImageToZoom } from '../../models/ImageToZoom';
 
 @Component({
   selector: 'app-home',
@@ -44,7 +37,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getPhotos(): void {
+  private getPhotos(): void {
     this.photoService.getPhotos().subscribe((response: any) => {
       this.transFormResponse(response);
     });
