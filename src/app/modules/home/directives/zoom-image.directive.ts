@@ -26,40 +26,49 @@ export class ZoomImageDirective {
     this.zoomImage(this.imageToZoom);
   }
 
-  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(): void {
+  @HostListener('document:keydown.escape', ['$event'])
+  onKeydownHandler(): void {
     this.photoService.setImageToZoom(null);
   }
 
-  zoomImage(imageToZoom: ImageToZoom): void {
+  private zoomImage(imageToZoom: ImageToZoom): void {
     if (imageToZoom.action === 'zoom-in' && imageToZoom.activeIndex <= 2) {
-      imageToZoom.activeIndex += 1;
-      switch (imageToZoom.activeIndex) {
-        case 1:
-          imageToZoom.activeImage = imageToZoom.photo.regular;
-          break;
-        case 2:
-          imageToZoom.activeImage = imageToZoom.photo.full;
-          imageToZoom.action = 'zoom-out';
-          this.renderer.setStyle(this.el.nativeElement, 'cursor', 'zoom-out');
-          break;
-      }
+      this.zoomInImage(imageToZoom);
     } else if (
       imageToZoom.action === 'zoom-out' &&
       imageToZoom.activeIndex >= 1
     ) {
-      imageToZoom.activeIndex -= 1;
-      switch (imageToZoom.activeIndex) {
-        case 0:
-          imageToZoom.activeImage = imageToZoom.photo.small;
-          imageToZoom.action = 'zoom-in';
-          this.renderer.setStyle(this.el.nativeElement, 'cursor', 'zoom-in');
-          break;
-        case 1:
-          imageToZoom.activeImage = imageToZoom.photo.regular;
-          break;
-      }
+      this.zoomOutImage(imageToZoom);
     }
 
     this.photoService.setImageToZoom(imageToZoom);
+  }
+
+  private zoomInImage(imageToZoom: ImageToZoom) {
+    imageToZoom.activeIndex += 1;
+    switch (imageToZoom.activeIndex) {
+      case 1:
+        imageToZoom.activeImage = imageToZoom.photo.regular;
+        break;
+      case 2:
+        imageToZoom.activeImage = imageToZoom.photo.full;
+        imageToZoom.action = 'zoom-out';
+        this.renderer.setStyle(this.el.nativeElement, 'cursor', 'zoom-out');
+        break;
+    }
+  }
+
+  private zoomOutImage(imageToZoom: ImageToZoom) {
+    imageToZoom.activeIndex -= 1;
+    switch (imageToZoom.activeIndex) {
+      case 0:
+        imageToZoom.activeImage = imageToZoom.photo.small;
+        imageToZoom.action = 'zoom-in';
+        this.renderer.setStyle(this.el.nativeElement, 'cursor', 'zoom-in');
+        break;
+      case 1:
+        imageToZoom.activeImage = imageToZoom.photo.regular;
+        break;
+    }
   }
 }
