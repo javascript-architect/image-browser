@@ -13,3 +13,7 @@
 2. Run `cd image-browser` to change the directory to `image-browser`.
 3. Run `npm install` to install the dependencies.
 4. Run `npm start` for a dev server. Navigate to `http://localhost:4200/`.
+
+## Demo
+
+- [Video](https://drive.google.com/file/d/1ysczpcqfTcasbkijBu8w5Ndc99gLnAVF/view?usp=sharing)
